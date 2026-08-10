@@ -70,7 +70,8 @@ export const googleAuth = async ({ idToken }) => {
   try {
     const ticket = await googleClient.verifyIdToken({ idToken, audience: env.GOOGLE_CLIENT_ID });
     payload = ticket.getPayload();
-  } catch (_err) {
+  } catch (err) {
+    console.error('[google-auth] verification failed:', err.message);
     throw new ApiError(STATUS.UNAUTHORIZED, 'Invalid Google token.');
   }
 
