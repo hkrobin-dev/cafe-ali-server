@@ -23,12 +23,12 @@ const app = express();
 
 // --- Security & core middleware ---
 app.use(helmet());
-app.use(
-  cors({
-    origin: env.CLIENT_URL,
-    credentials: true,
-  })
-);
+
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true,
+}));
+
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
